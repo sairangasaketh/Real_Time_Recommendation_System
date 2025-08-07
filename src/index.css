@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Real-time Recommender System Design System */
+
+@layer base {
+  :root {
+    /* Light theme colors */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    /* Primary - Electric Purple */
+    --primary: 270 95% 65%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Secondary - Light Purple */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Accent - Bright Blue */
+    --accent: 200 100% 60%;
+    --accent-foreground: 222.2 84% 4.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 270 95% 65%;
+
+    /* Recommendation system specific colors */
+    --rec-hot: 0 100% 67%;           /* Hot recommendations */
+    --rec-trending: 45 100% 60%;     /* Trending items */
+    --rec-new: 120 100% 60%;         /* New recommendations */
+    --rec-liked: 300 100% 70%;       /* Liked items */
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(270 95% 75%) 0%, hsl(200 100% 70%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(222 84% 6%) 0%, hsl(250 50% 12%) 100%);
+    --gradient-accent: linear-gradient(90deg, hsl(270 95% 75%) 0%, hsl(200 100% 70%) 50%, hsl(120 100% 60%) 100%);
+
+    /* Shadows with glow effects */
+    --shadow-glow: 0 0 20px hsl(270 95% 75% / 0.3);
+    --shadow-card: 0 4px 6px -1px hsl(222 84% 4.9% / 0.3), 0 2px 4px -1px hsl(222 84% 4.9% / 0.2);
+
+    /* Animation variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark theme colors */
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 84% 6%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 84% 6%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary - Electric Purple */
+    --primary: 270 95% 75%;
+    --primary-foreground: 222 84% 4.9%;
+
+    /* Secondary - Deep Purple */
+    --secondary: 250 50% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+
+    /* Accent - Neon Blue */
+    --accent: 200 100% 70%;
+    --accent-foreground: 222 84% 4.9%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 270 95% 75%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Recommendation system components */
+  .rec-card {
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+  }
+
+  .rec-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .rec-badge-hot {
+    background: hsl(var(--rec-hot));
+    color: white;
+  }
+
+  .rec-badge-trending {
+    background: hsl(var(--rec-trending));
+    color: white;
+  }
+
+  .rec-badge-new {
+    background: hsl(var(--rec-new));
+    color: white;
+  }
+
+  .rec-badge-liked {
+    background: hsl(var(--rec-liked));
+    color: white;
+  }
+
+  .gradient-text {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(270 95% 75% / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 30px hsl(270 95% 75% / 0.6);
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}
